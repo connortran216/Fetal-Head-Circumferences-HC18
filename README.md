@@ -30,7 +30,7 @@ Notice: The dataset is not included, you can download it from https://hc18.grand
 
 ## Results
 
-<img src="![Optional Text](../master/Images/crop_mask.jpg) " width="250"> | <img src="![Optional Text](../master/Images/ellipse_on_crop_mask.jpg)" width="250">
+<img src=![Optional Text](../master/Images/crop_mask.jpg), width="250"> | <img src=![Optional Text](../master/Images/ellipse_on_crop_mask.jpg), width="250">
 
 ## Authors
 
