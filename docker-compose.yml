@@ -1,0 +1,87 @@
+version: '2.3'
+
+services:
+#    """ Service Gateway """
+    service-gateway:
+      build:
+        context: .
+        dockerfile: docker/gateway.Dockerfile
+      ports:
+        - "8888:8888"
+      volumes:
+        - ${PWD}:/app
+      networks:
+        fetal-head-estimator:
+          aliases:
+            - servicegateway
+      working_dir: /app
+      entrypoint: ["python", "service_gateway/service_gateway.py"]
+#      restart: always
+
+#    """ Center Processing """
+    center-processing:
+      build:
+        context: .
+        dockerfile: docker/center.Dockerfile
+      ports:
+        - "8000:8000"
+      volumes:
+        - ${PWD}:/app
+      networks:
+        fetal-head-estimator:
+          aliases:
+            - centerprocessing
+      working_dir: /app
+      entrypoint: [ "python", "center_processing/center_processing.py" ]
+
+#    """ Mask RCNN """
+    mask-rcnn:
+      build:
+        context: .
+        dockerfile: docker/mask_rcnn.Dockerfile
+      ports:
+        - "9000:9000"
+      volumes:
+        - ${PWD}:/app
+      networks:
+        fetal-head-estimator:
+          aliases:
+            - maskrcnn
+      working_dir: /app
+      entrypoint: [ "python", "mask_rcnn/mrcnn_api.py" ]
+
+#    """ Ellipse Fitter """
+    ellipse-fitter:
+      build:
+        context: .
+        dockerfile: docker/ellipse.Dockerfile
+      ports:
+        - "9090:9090"
+      volumes:
+        - ${PWD}:/app
+      networks:
+        fetal-head-estimator:
+          aliases:
+            - ellipse
+      working_dir: /app
+      entrypoint: [ "python", "ellipse_fitter/ellipse_api.py" ]
+
+#    """ Perimeter Estimator """
+    perimeter-estimator:
+      build:
+        context: .
+        dockerfile: docker/perimeter.Dockerfile
+      ports:
+        - "9009:9009"
+      volumes:
+        - ${PWD}:/app
+      networks:
+        fetal-head-estimator:
+          aliases:
+            - perimeter
+      working_dir: /app
+      entrypoint: [ "python", "perimeter_estimator/perimeter_api.py" ]
+
+networks:
+    fetal-head-estimator:
+      external: true
