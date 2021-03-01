@@ -28,6 +28,10 @@ Simply run test_api.py to test.
 
 Notice: The dataset is not included, you can download it from https://hc18.grand-challenge.org/
 
+## Results
+
+![Optional Text](../master/Images/crop_mask.jpg)
+![Optional Text](../master/Images/ellipse_on_crop_mask.jpg)
 
 ## Authors
 
