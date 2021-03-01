@@ -35,6 +35,7 @@ Notice: The dataset is not included, you can download it from https://hc18.grand
 ## Authors
 
 Researcher - Developer: *Tran Tuan Canh* 
+
 Instrutor: *PhD. Le Minh Hung*
 
 ## License
