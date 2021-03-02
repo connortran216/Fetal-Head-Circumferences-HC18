@@ -36,7 +36,7 @@ For now, you can only check Head Circumference by looking for the logs inside Se
 
 I'm still working on the Interface.
 
-Use *docker logs <container-name>* to get the Result.
+Use *docker logs container-name* to get the Result.
 
 ## Authors
 
