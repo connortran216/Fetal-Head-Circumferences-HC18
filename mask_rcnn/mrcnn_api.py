@@ -40,7 +40,7 @@ if __name__ == "__main__":
 	print("Finish loading Mask RCNN model !!!")
 
 	# host = 'localhost' if run local else 'mrcnn_api'
-	uvicorn.run(mrcnn_api, port=9000, host='maskrcnn', debug=True)
+	uvicorn.run(mrcnn_api, port=9006, host='maskrcnn', debug=True)
 	
 
 
