@@ -43,6 +43,6 @@ ADD ./docker/requirements/mask_rcnn.rs requirements.txt
 RUN pip install -r requirements.txt
 
 ENV PYTHONPATH=/app
-# EXPOSE 9000
+EXPOSE 9000
 # command to run on container start
 # CMD [ "python", "mask_rcnn.py" ]

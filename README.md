@@ -1,6 +1,6 @@
 # Fetal Head Circumferences using HC18 dataset
 
-This is a demo API which helps detecting the fetal head (Using Mask-RCNN) and measure its size (Using pure OpenCV toolkit) base on the given data.
+This is a demo Restful API which helps detecting the fetal head (Using Mask-RCNN) and measure its size (Using pure OpenCV toolkit) base on the given data.
 
 ## Getting Started
 
@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 Firstly, Install requirements dependencies using requirements.txt
 
-pip install -r requirements.txt
+*pip install -r requirements.txt*
 
 Remember, Mask-RCNN is the fork from https://github.com/matterport/Mask_RCNN which still using TF1 for training, but I still use TF2 for inferencing.
 
@@ -20,7 +20,7 @@ Secondly, Install docker and docker-compose for deployment
 
 Run docker-compose file to build and start 5 containers
 
-docker-compose up -f
+*docker-compose up -f*
 
 ## Testing the API
 
@@ -28,10 +28,20 @@ Simply run test_api.py to test.
 
 Notice: The dataset is not included, you can download it from https://hc18.grand-challenge.org/
 
+## Results
+
+<img src="../master/Images/crop_mask.jpg" alt="Crop Mask" title="Crop Mask" width="250">  <img src="../master/Images/ellipse_on_crop_mask.jpg" alt="Ellipse on Crop Mask" title="Ellipse on Crop Mask" width="250">
+
+For now, you can only check Head Circumference by looking for the logs inside Service Gateway container.
+
+I'm still working on the Interface.
+
+Use *docker logs container-name* to get the Result.
 
 ## Authors
 
 Researcher - Developer: *Tran Tuan Canh* 
+
 Instructor: *PhD. Le Minh Hung*
 
 ## License
