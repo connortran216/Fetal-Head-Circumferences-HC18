@@ -13,7 +13,9 @@ logging.basicConfig(format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:
 
 class RestServiceCenterProcessing():
 
-	center_processing = FastAPI(title='Center Processing API')
+	center_processing = FastAPI(title='Center Processing API',
+								description='Fetal Head Circumferences Estimator.',
+								version='1.0.0')
 
 	@center_processing.post("/request_mask")
 	async def insert_core(file: bytes = File(...), pixel_size: str = Form(...)):
@@ -88,9 +90,9 @@ def custom_openapi():
 if __name__ == "__main__":
 	### URL
 	url = [
-		'http://maskrcnn:9000/mrcnn_masker',
-		'http://ellipse:9090/ellipse_fitter',
-		'http://perimeter:9009/perimeter_estimator'
+		'http://maskrcnn:8200/mrcnn_masker',
+		'http://ellipse:8300/ellipse_fitter',
+		'http://perimeter:8400/perimeter_estimator'
 	]
 
 	### Fast API

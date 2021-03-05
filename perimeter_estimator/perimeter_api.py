@@ -44,8 +44,8 @@ def custom_openapi():
 	return server.openapi_schema
 
 if __name__ == "__main__":
-    # host = 'localhost' if run local else 'perimeter_api'
-    uvicorn.run(server, port=8400, host='perimeter_api', debug=True)
+    # host = 'localhost' if run local else 'perimeter'
+    uvicorn.run(server, port=8400, host='perimeter', debug=True)
 
 
 

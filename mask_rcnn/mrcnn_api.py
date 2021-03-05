@@ -34,8 +34,6 @@ class RestServiceMRCNN():
 			"crop_mask": crop_mask
 		}
 		json_masked_img = json.dumps(result)
-		# json_masked_img = json.dumps(crop_mask)
-		# bytes_masked_img = json_masked_img.encode('utf-8')
 
 		return json_masked_img
 
@@ -59,7 +57,7 @@ if __name__ == "__main__":
 	model = load_mrcnn_model()
 	print("Finish loading Mask RCNN model !!!")
 
-	# host = 'localhost' if run local else 'mrcnn_api'
+	# host = 'localhost' if run local else 'maskrcnn'
 	uvicorn.run(server, port=8200, host='maskrcnn', debug=True)
 	
 
