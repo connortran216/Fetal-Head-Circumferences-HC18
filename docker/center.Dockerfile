@@ -36,6 +36,6 @@ RUN pip install requests
 
 ENV PYTHONPATH=/app
 
-EXPOSE 8000
+# EXPOSE 8000
 # command to run on container start
 # CMD [ "python", "center_processing.py" ]

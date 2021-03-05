@@ -59,7 +59,7 @@ def custom_openapi():
 
 if __name__ == "__main__":
 	# host = 'localhost' if run local else 'mrcnn_api'
-	uvicorn.run(server, port=9090, host='mrcnn_api', debug=True)
+	uvicorn.run(server, port=8300, host='mrcnn_api', debug=True)
 	
 
 

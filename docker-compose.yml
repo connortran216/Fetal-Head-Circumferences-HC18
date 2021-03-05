@@ -24,7 +24,7 @@ services:
         context: .
         dockerfile: docker/center.Dockerfile
       ports:
-        - "8000:8000"
+        - "8100:8100"
       volumes:
         - ${PWD}:/app
       networks:
@@ -40,7 +40,7 @@ services:
         context: .
         dockerfile: docker/mask_rcnn.Dockerfile
       ports:
-        - "9000:9000"
+        - "8200:8200"
       volumes:
         - ${PWD}:/app
       networks:
@@ -56,7 +56,7 @@ services:
         context: .
         dockerfile: docker/ellipse.Dockerfile
       ports:
-        - "9090:9090"
+        - "8300:8300"
       volumes:
         - ${PWD}:/app
       networks:
@@ -72,7 +72,7 @@ services:
         context: .
         dockerfile: docker/perimeter.Dockerfile
       ports:
-        - "9009:9009"
+        - "8400:8400"
       volumes:
         - ${PWD}:/app
       networks:
