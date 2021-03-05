@@ -42,6 +42,6 @@ RUN pip install matplotlib
 # RUN pip install -r requirements.txt
 
 ENV PYTHONPATH=/app
-EXPOSE 9090
+# EXPOSE 9090
 # command to run on container start
 # CMD [ "python", "ellipse_api.py" ]

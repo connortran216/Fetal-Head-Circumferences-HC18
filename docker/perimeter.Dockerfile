@@ -37,6 +37,6 @@ RUN pip install scikit-build
 # RUN pip install -r requirements.txt
 
 ENV PYTHONPATH=/app
-EXPOSE 9009
+# EXPOSE 9009
 # command to run on container start
 # CMD [ "python", "perimeter_api.py" ]

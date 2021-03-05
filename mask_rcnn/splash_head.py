@@ -282,7 +282,8 @@ class InferenceConfig(CustomConfig):
 
 def load_mrcnn_model():
     ### Define weights path
-    weights_path = './mask_rcnn/weights/mask_rcnn_head_final.h5'
+    # weights_path = './mask_rcnn/weights/mask_rcnn_head_final.h5'
+    weights_path = os.path.join('./weights', "mask_rcnn_head_final.h5")
     print("Weights: ", weights_path)
 
     ### Define config

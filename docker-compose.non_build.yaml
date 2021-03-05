@@ -3,9 +3,7 @@ version: '2.3'
 services:
 #    """ Service Gateway """
     service-gateway:
-      build:
-        context: .
-        dockerfile: docker/gateway.Dockerfile
+      image: mask-rcnn-api_service-gateway
       ports:
         - "8888:8888"
       volumes:
@@ -20,9 +18,7 @@ services:
 
 #    """ Center Processing """
     center-processing:
-      build:
-        context: .
-        dockerfile: docker/center.Dockerfile
+      image: mask-rcnn-api_center-processing
       ports:
         - "8100:8100"
       volumes:
@@ -36,9 +32,7 @@ services:
 
 #    """ Mask RCNN """
     mask-rcnn:
-      build:
-        context: .
-        dockerfile: docker/mask_rcnn.Dockerfile
+      image: mask-rcnn-api_mask-rcnn
       ports:
         - "8200:8200"
       volumes:
@@ -52,9 +46,7 @@ services:
 
 #    """ Ellipse Fitter """
     ellipse-fitter:
-      build:
-        context: .
-        dockerfile: docker/ellipse.Dockerfile
+      image: mask-rcnn-api_ellipse-fitter
       ports:
         - "8300:8300"
       volumes:
@@ -68,9 +60,7 @@ services:
 
 #    """ Perimeter Estimator """
     perimeter-estimator:
-      build:
-        context: .
-        dockerfile: docker/perimeter.Dockerfile
+      image: mask-rcnn-api_perimeter-estimator
       ports:
         - "8400:8400"
       volumes:

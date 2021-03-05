@@ -36,6 +36,6 @@ RUN pip install requests
 
 
 ENV PYTHONPATH=/app
-EXPOSE 8888
+# EXPOSE 8888
 # command to run on container start
 # CMD [ "python", "service_gateway.py" ]

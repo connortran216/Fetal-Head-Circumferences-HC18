@@ -24,7 +24,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/ellipse_fitter/ellipse_api.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="&#9;" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/mask_rcnn/mrcnn_api.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="&#9;" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/perimeter_estimator/perimeter_api.py">
           <value>
             <Attribute>
               <option name="separator" value="&#9;" />
