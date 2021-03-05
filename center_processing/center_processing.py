@@ -82,4 +82,4 @@ if __name__ == "__main__":
 
 	### Fast API
 	# host = 'localhost' if run local else 'center_processing'
-	uvicorn.run(center_processing, port=8000, host='centerprocessing', debug=True)
+	uvicorn.run(center_processing, port=8008, host='centerprocessing', debug=True)
