@@ -20,7 +20,7 @@ Secondly, Install docker and docker-compose for deployment
 
 Run docker-compose file to build and start 5 containers
 
-*docker-compose up -f*
+*docker-compose up -d*
 
 ## Testing the API
 
