@@ -7,7 +7,7 @@ services:
         context: .
         dockerfile: docker/gateway.Dockerfile
       ports:
-        - "8888:8888"
+        - "8009:8009"
       volumes:
         - ${PWD}:/app
       networks:
