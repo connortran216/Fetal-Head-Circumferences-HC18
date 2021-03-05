@@ -40,7 +40,7 @@ services:
         context: .
         dockerfile: docker/mask_rcnn.Dockerfile
       ports:
-        - "9000:9000"
+        - "9006:9006"
       volumes:
         - ${PWD}:/app
       networks:
