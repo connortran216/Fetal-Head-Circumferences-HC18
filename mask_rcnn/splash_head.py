@@ -48,7 +48,7 @@ from mrcnn import visualize
 
 # Root directory of the project
 ROOT_DIR = os.path.abspath("./")
-
+print("ROOT_DIR: ", ROOT_DIR)
 # Import Mask RCNN
 from mrcnn.config import Config
 from mrcnn import model as modellib, utils
@@ -59,7 +59,7 @@ COCO_WEIGHTS_PATH = os.path.join('./weights', "mask_rcnn_coco.h5")
 # Directory to save logs and model checkpoints, if not provided
 # through the command line argument --logs
 DEFAULT_LOGS_DIR = os.path.join(ROOT_DIR, "logs")
-
+print("LOG: ", DEFAULT_LOGS_DIR)
 ############################################################
 #  Configurations
 ############################################################
@@ -283,7 +283,7 @@ class InferenceConfig(CustomConfig):
 def load_mrcnn_model():
     ### Define weights path
     # weights_path = './mask_rcnn/weights/mask_rcnn_head_final.h5'
-    weights_path = os.path.join('./weights', "mask_rcnn_head_final.h5")
+    weights_path = os.path.join(ROOT_DIR, "weights/mask_rcnn_head_final.h5")
     print("Weights: ", weights_path)
 
     ### Define config

@@ -4,7 +4,7 @@ This is a demo Restful API which helps detecting the fetal head (Using Mask-RCNN
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project and run it on your local machine for development and testing purposes. See deployment part to deploy the project on a live system.
 
 ### Prerequisites & Install
 
