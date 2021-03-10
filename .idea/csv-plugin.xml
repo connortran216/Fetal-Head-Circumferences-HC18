@@ -38,6 +38,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/mask_rcnn/splash_head.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/perimeter_estimator/perimeter_api.py">
           <value>
             <Attribute>
