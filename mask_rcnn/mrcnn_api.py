@@ -8,8 +8,8 @@ from PIL import Image
 import numpy as np
 from io import BytesIO
 
-from splash_head import load_mrcnn_model, detect_and_color_splash
-
+# from splash_head import load_mrcnn_model, detect_and_color_splash
+from MaskRCNN import MaskRCNN
 
 
 global model
@@ -26,7 +26,7 @@ class RestServiceMRCNN():
 		image = Image.open(BytesIO(file)).convert('RGB')
 		image = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
 
-		crop_mask, rgb_img = detect_and_color_splash(model, image=image)
+		crop_mask, rgb_img = model.detect_and_color_splash(image=image)
 
 		# Compress data
 		crop_mask = crop_mask.tolist()
@@ -37,8 +37,7 @@ class RestServiceMRCNN():
 
 		return json_masked_img
 
-server = RestServiceMRCNN()
-server = server.mrcnn_api
+
 
 def custom_openapi():
 	if server.openapi_schema:
@@ -54,11 +53,16 @@ def custom_openapi():
 
 if __name__ == "__main__":
 	# Init Mask RCNN Model
-	model = load_mrcnn_model()
+	# model = load_mrcnn_model()
+	model = MaskRCNN()
 	print("Finish loading Mask RCNN model !!!")
 
+	server = RestServiceMRCNN()
+	server = server.mrcnn_api
+	server.openapi = custom_openapi
+
 	# host = 'localhost' if run local else 'maskrcnn'
-	uvicorn.run(server, port=8200, host='maskrcnn', debug=True)
+	uvicorn.run(server, port=8200, host='localhost', debug=True)
 	
 
 
