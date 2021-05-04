@@ -13,12 +13,12 @@ class RestServicePerimeterEstimator():
 								  version='1.0.0')
 
     @perimeter_estimator.post("/perimeter_estimator")
-    async def perimeter_estimating(ellipse_cordinates: str = Form(...), pixel_size: str = Form(...)):
+    async def perimeter_estimating(ellipse_cordinates: str = Form(...), pixel_size: str = Form(...), filename: str = Form(...)):
 
         ellipse_cordinates = ast.literal_eval(ellipse_cordinates)
         pixel_size = float(pixel_size)
 
-        ellipse_perimeter = Perimeter(ellipse_cordinates, pixel_size)
+        ellipse_perimeter = Perimeter(ellipse_cordinates, pixel_size, filename)
 
         result = {
             "ellipse_perimeter": ellipse_perimeter
@@ -45,7 +45,7 @@ def custom_openapi():
 
 if __name__ == "__main__":
     # host = 'localhost' if run local else 'perimeter'
-    uvicorn.run(server, port=8400, host='perimeter', debug=True)
+    uvicorn.run(server, port=8400, host='localhost', debug=True)
 
 
 

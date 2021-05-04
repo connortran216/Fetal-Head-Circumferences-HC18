@@ -9,7 +9,7 @@ services:
       ports:
         - "8888:8888"
       volumes:
-        - ${PWD}:/app
+        - E:\Deep Learning\HC-18-API\Fetal-Head-Circumferences-HC18:/app
       networks:
         fetal-head-estimator:
           aliases:
@@ -26,7 +26,7 @@ services:
       ports:
         - "8100:8100"
       volumes:
-        - ${PWD}:/app
+        - E:\Deep Learning\HC-18-API\Fetal-Head-Circumferences-HC18:/app
       networks:
         fetal-head-estimator:
           aliases:
@@ -42,7 +42,7 @@ services:
       ports:
         - "8200:8200"
       volumes:
-        - ${PWD}:/app
+        - E:\Deep Learning\HC-18-API\Fetal-Head-Circumferences-HC18:/app
       networks:
         fetal-head-estimator:
           aliases:
@@ -58,7 +58,7 @@ services:
       ports:
         - "8300:8300"
       volumes:
-        - ${PWD}:/app
+        - E:\Deep Learning\HC-18-API\Fetal-Head-Circumferences-HC18:/app
       networks:
         fetal-head-estimator:
           aliases:
@@ -74,7 +74,7 @@ services:
       ports:
         - "8400:8400"
       volumes:
-        - ${PWD}:/app
+        - E:\Deep Learning\HC-18-API\Fetal-Head-Circumferences-HC18:/app
       networks:
         fetal-head-estimator:
           aliases:

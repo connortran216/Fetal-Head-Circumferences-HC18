@@ -263,8 +263,8 @@ def detect_and_color_splash(model, image=None):
     kernel = np.ones((6, 6), np.uint8)
     image = cv2.dilate(image, kernel, iterations=3)
 
-    filename = "crop_mask.jpg"
-    cv2.imwrite(filename, image)
+    # filename = "crop_mask.jpg"
+    # cv2.imwrite(filename, image)
 
     return image, rgb_img
 
@@ -282,8 +282,8 @@ class InferenceConfig(CustomConfig):
 
 def load_mrcnn_model():
     ### Define weights path
-    # weights_path = './mask_rcnn/weights/mask_rcnn_head_final.h5'
-    weights_path = os.path.join(ROOT_DIR, "mask_rcnn/weights/mask_rcnn_head_final.h5")
+    weights_path = './/mask_rcnn//weights//mask_rcnn_head_final.h5'
+    # weights_path = os.path.join(ROOT_DIR, "mask_rcnn\weights\mask_rcnn_head_final.h5")
     print("Weights path: ", weights_path)
 
     ### Define config
@@ -297,7 +297,7 @@ def load_mrcnn_model():
 
     # Load weights
     print("Loading weights ", weights_path)
-    model.load_weights(weights_path, by_name=True)
+    model.load_weights("E:\\Deep Learning\\HC-18-API\\Fetal-Head-Circumferences-HC18\\mask_rcnn\\weights\\mask_rcnn_head_final.h5", by_name=True)
 
 
     return model

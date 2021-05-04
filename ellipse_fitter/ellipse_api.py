@@ -59,7 +59,7 @@ def custom_openapi():
 
 if __name__ == "__main__":
 	# host = 'localhost' if run local else 'ellipse'
-	uvicorn.run(server, port=8300, host='ellipse', debug=True)
+	uvicorn.run(server, port=8300, host='localhost', debug=True)
 	
 
 

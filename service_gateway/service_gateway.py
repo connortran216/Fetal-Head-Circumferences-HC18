@@ -12,10 +12,11 @@ class RestServiceGateway:
 						  version='1.0.0')
 
 	@api_gateway.post("/service_gateway_upload")
-	async def insert(pixel_size: str = Form(...), file: UploadFile = File(...)):
+	async def insert(pixel_size: str = Form(...), filename: str = Form(...), file: UploadFile = File(...)):
 
 		data = {
-			"pixel_size": pixel_size
+			"pixel_size": pixel_size,
+			"filename": filename
 		}
 
 		files = {
@@ -53,10 +54,10 @@ def custom_openapi():
 if __name__ == "__main__":
 	#URL
 	url = [
-		"http://centerprocessing:8100/request_mask",
+		"http://localhost:8100/request_mask",
 	]
 	server.openapi = custom_openapi
 	# host = 'localhost' if run local else 'servicegateway'
-	uvicorn.run(server, port=8888, host='servicegateway', debug=True)
+	uvicorn.run(server, port=8888, host='localhost', debug=True)
 
 

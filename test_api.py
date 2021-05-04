@@ -10,15 +10,15 @@ def send_request():
 		"http://localhost:8888/service_gateway_upload"
 	]
 
-	df = pd.read_csv("test_set_pixel_size.csv", delimiter=";")
-	sample_data = df.sample()
+	# df = pd.read_csv("test_set_pixel_size.csv", delimiter=",")
+	# sample_data = df.sample()
+	#
+	# filename = sample_data["filename"].values[0]
+	# pixel_size = sample_data["pixel size(mm)"].values[0]
 
-	filename = sample_data["filename"].values[0]
-	pixel_size = sample_data["pixel size(mm)"].values[0]
-
-	filename = "test_set/" + str(filename)
-	# pixel_size = 0.0691358041432
-	# filename = "000_HC.png"
+	# filename = "test_set/" + str(filename)
+	pixel_size = 0.117779842
+	filename = "019_2HC.png"
 	print("File name: ", filename)
 
 	with open(filename, 'rb') as image_file:
@@ -28,7 +28,8 @@ def send_request():
 	headers = {}
 
 	data = {
-		"pixel_size": str(pixel_size)
+		"pixel_size": str(pixel_size),
+		"filename": filename
 	}
 
 	files = {
