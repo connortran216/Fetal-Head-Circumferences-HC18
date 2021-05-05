@@ -8,28 +8,27 @@ from ellipse_perimeter import Perimeter
 
 
 class RestServicePerimeterEstimator():
-    perimeter_estimator = FastAPI(title='Perimeter Estimator API',
+	perimeter_estimator = FastAPI(title='Perimeter Estimator API',
 								  description='Fetal Head Circumferences Estimator.',
 								  version='1.0.0')
 
-    @perimeter_estimator.post("/perimeter_estimator")
-    async def perimeter_estimating(ellipse_cordinates: str = Form(...), pixel_size: str = Form(...)):
+	@staticmethod
+	@perimeter_estimator.post("/perimeter_estimator")
+	async def perimeter_estimating(ellipse_cordinates: str = Form(...), pixel_size: str = Form(...), filename: str = Form(...)):
 
-        ellipse_cordinates = ast.literal_eval(ellipse_cordinates)
-        pixel_size = float(pixel_size)
+		ellipse_cordinates = ast.literal_eval(ellipse_cordinates)
+		pixel_size = float(pixel_size)
 
-        ellipse_perimeter = Perimeter(ellipse_cordinates, pixel_size)
+		ellipse_perimeter = Perimeter(ellipse_cordinates, pixel_size,filename)
 
-        result = {
-            "ellipse_perimeter": ellipse_perimeter
-        }
-        # # Compress data
-        json_ellipse_perimeter = json.dumps(result)
+		result = {
+			"ellipse_perimeter": ellipse_perimeter
+		}
+		# # Compress data
+		json_ellipse_perimeter = json.dumps(result)
 
-        return json_ellipse_perimeter
+		return json_ellipse_perimeter
 
-server = RestServicePerimeterEstimator()
-server = server.perimeter_estimator
 
 def custom_openapi():
 	if server.openapi_schema:
@@ -43,9 +42,11 @@ def custom_openapi():
 	server.openapi_schema = openapi_schema
 	return server.openapi_schema
 
+
 if __name__ == "__main__":
-    # host = 'localhost' if run local else 'perimeter'
-    uvicorn.run(server, port=8400, host='perimeter', debug=True)
+	server = RestServicePerimeterEstimator()
+	server = server.perimeter_estimator
+	server.openapi = custom_openapi
 
-
-
+	# host = 'localhost' if run local else 'perimeter'
+	uvicorn.run(server, port=8400, host='localhost', debug=True)

@@ -1,4 +1,4 @@
-import uvicorn
+import uvicornService Gateway
 from fastapi import FastAPI, Form, File
 from fastapi.openapi.utils import get_openapi
 import ast
@@ -18,7 +18,7 @@ class RestServiceCenterProcessing():
 								version='1.0.0')
 
 	@center_processing.post("/request_mask")
-	async def insert_core(file: bytes = File(...), pixel_size: str = Form(...)):
+	async def insert_core(file: bytes = File(...), pixel_size: str = Form(...), filename: str = Form(...)):
 		# pixel_size = float(pixel_size)
 		file = base64.b64decode(file)
 		""" RCNN Masker """
@@ -49,7 +49,8 @@ class RestServiceCenterProcessing():
 
 		data = {
 			'ellipse_cordinates': json_ellipse_cordinates,
-			"pixel_size": pixel_size
+			"pixel_size": pixel_size,
+			"filename": filename
 		}
 
 		ellipse_perimeter = requests.request("POST", url[2], headers=headers, data=data)
@@ -90,11 +91,11 @@ def custom_openapi():
 if __name__ == "__main__":
 	### URL
 	url = [
-		'http://maskrcnn:8200/mrcnn_masker',
-		'http://ellipse:8300/ellipse_fitter',
-		'http://perimeter:8400/perimeter_estimator'
+		'http://localhost:8200/mrcnn_masker',
+		'http://localhost:8300/ellipse_fitter',
+		'http://localhost:8400/perimeter_estimator'
 	]
 
 	### Fast API
 	# host = 'localhost' if run local else 'center_processing'
-	uvicorn.run(server, port=8100, host='centerprocessing', debug=True)
+	uvicorn.run(server, port=8100, host='localhost', debug=True)

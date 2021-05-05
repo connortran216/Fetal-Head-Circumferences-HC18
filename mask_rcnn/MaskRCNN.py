@@ -28,6 +28,7 @@ Usage: import the module (see Jupyter notebooks for examples), or run from
 """
 import numpy as np
 import cv2
+import os
 # Import Mask RCNN
 from mrcnn.config import Config
 from mrcnn import model as modellib
@@ -110,7 +111,7 @@ class InferenceConfig(CustomConfig):
 
 class MaskRCNN(object):
 	def __init__(self):
-		self.weights_path = './weights/mask_rcnn_head_final.h5'
+		self.weights_path = os.path.join(os.path.abspath("./"), "weights/mask_rcnn_head_final.h5")
 		self.config = InferenceConfig()
 		self.model = modellib.MaskRCNN(mode="inference", config=self.config, model_dir='./logs')
 		self.model.load_weights(self.weights_path, by_name=True)
@@ -144,4 +145,4 @@ class MaskRCNN(object):
 # 	image = cv2.imread("000_HC.png")
 #
 # 	model = MaskRCNN()
-# 	mask = model.detect_and_color_splash(image)
+	# mask = model.detect_and_color_splash(image)

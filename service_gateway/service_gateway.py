@@ -11,11 +11,13 @@ class RestServiceGateway:
 						  description='Fetal Head Circumferences Estimator.',
 						  version='1.0.0')
 
+	@staticmethod
 	@api_gateway.post("/service_gateway_upload")
-	async def insert(pixel_size: str = Form(...), file: UploadFile = File(...)):
+	async def insert(pixel_size: str = Form(...), filename: str = Form(...), file: UploadFile = File(...)):
 
 		data = {
-			"pixel_size": pixel_size
+			"pixel_size": pixel_size,
+			"filename": filename
 		}
 
 		files = {
@@ -34,8 +36,6 @@ class RestServiceGateway:
 
 		return res
 
-server = RestServiceGateway()
-server = server.api_gateway
 
 def custom_openapi():
 	if server.openapi_schema:
@@ -53,10 +53,14 @@ def custom_openapi():
 if __name__ == "__main__":
 	#URL
 	url = [
-		"http://centerprocessing:8100/request_mask",
+		"http://localhost:8100/request_mask",
 	]
+
+	server = RestServiceGateway()
+	server = server.api_gateway
 	server.openapi = custom_openapi
+
 	# host = 'localhost' if run local else 'servicegateway'
-	uvicorn.run(server, port=8888, host='servicegateway', debug=True)
+	uvicorn.run(server, port=8888, host='localhost', debug=True)
 
 

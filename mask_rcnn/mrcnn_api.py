@@ -19,6 +19,7 @@ class RestServiceMRCNN():
 						description='Fetal Head Circumferences Estimator.',
 						version='1.0.0')
 
+	@staticmethod
 	@mrcnn_api.post("/mrcnn_masker")
 	async def mask_api(file: bytes = File(...)):
 		# Read image
@@ -50,6 +51,7 @@ def custom_openapi():
 	)
 	server.openapi_schema = openapi_schema
 	return server.openapi_schema
+
 
 if __name__ == "__main__":
 	# Init Mask RCNN Model
