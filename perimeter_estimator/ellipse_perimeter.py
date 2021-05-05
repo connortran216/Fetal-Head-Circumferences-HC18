@@ -6,14 +6,18 @@ import numpy as np
 def Perimeter(ellipse_cordinates, pixel_size, filename):
     # factor = row["pixel size(mm)"]
     (xx, yy), (MA, ma), angle = ellipse_cordinates
-
-    center_x_mm = yy #factor * yy
-    center_y_mm = xx #factor * xx
-    semi_axes_a_mm = ma / 2 #factor * ma / 2
-    semi_axes_b_mm = MA / 2 #factor * MA / 2
+    
+    factor = pixel_size
+    center_x_mm = factor * yy
+    center_y_mm = factor * xx
+    semi_axes_a_mm = factor * ma / 2
+    semi_axes_b_mm = factor * MA / 2
     angle_rad = (-angle * np.pi / 180) % np.pi
     # print(center_x_mm, center_y_mm, semi_axes_a_mm, semi_axes_b_mm, angle_rad)
-
+    
+    data = filename, center_x_mm, center_y_mm, semi_axes_a_mm, semi_axes_b_mm, angle_rad
+	with open("result.txt", "a") as file:
+		file.write(','.join(map(repr, data)) + "\n")
 
     h = (semi_axes_a_mm - semi_axes_b_mm) ** 2 / 
     (semi_axes_a_mm + semi_axes_b_mm) ** 2
