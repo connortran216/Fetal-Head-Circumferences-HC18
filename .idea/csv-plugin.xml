@@ -31,6 +31,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/mask_rcnn/MaskRCNN.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="&#9;" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/mask_rcnn/mrcnn_api.py">
           <value>
             <Attribute>
@@ -63,6 +70,13 @@
           <value>
             <Attribute>
               <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/test_all">
+          <value>
+            <Attribute>
+              <option name="separator" value="&#9;" />
             </Attribute>
           </value>
         </entry>

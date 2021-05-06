@@ -53,7 +53,6 @@ def draw_ellipse(img, rgb_img):
 
     # filename = "ellipse_on_crop_mask.jpg"
     # cv2.imwrite(filename, rgb_img)
-
     # plt.imshow(rgb_img)
     # plt.show()
 
@@ -75,5 +74,5 @@ def draw_ellipse(img, rgb_img):
     # plt.imshow(c_img)
     # plt.show()
 
-    return ellipse, rgb_img
+    return ellipse
 

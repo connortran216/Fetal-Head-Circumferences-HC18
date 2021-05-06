@@ -16,6 +16,7 @@ class RestServiceEllipseFitter():
 						  description='Fetal Head Circumferences Estimator.',
 						  version='1.0.0')
 
+	@staticmethod
 	@ellipse_api.post("/ellipse_fitter")
 	async def ellipse_fitting(masked_img: bytes = File(...), rgb_img: bytes = File(...)):
 		# Read image
@@ -26,12 +27,11 @@ class RestServiceEllipseFitter():
 
 		masked_img = np.array(masked_img['crop_mask']).astype(np.uint8)
 
-
 		rgb_img = Image.open(BytesIO(rgb_img)).convert('RGB')
 		rgb_img = cv2.cvtColor(np.array(rgb_img), cv2.COLOR_RGB2BGR)
 
 		# Extract faces and features from it
-		ellipse, rgb_img = draw_ellipse(masked_img, rgb_img)
+		ellipse = draw_ellipse(masked_img, rgb_img)
 
 		result = {
 			"ellipse_cordinates": ellipse,
@@ -42,8 +42,7 @@ class RestServiceEllipseFitter():
 
 		return json_ellipse_cordinates
 
-server = RestServiceEllipseFitter()
-server = server.ellipse_api
+
 
 def custom_openapi():
 	if server.openapi_schema:
@@ -57,7 +56,12 @@ def custom_openapi():
 	server.openapi_schema = openapi_schema
 	return server.openapi_schema
 
+
 if __name__ == "__main__":
+	server = RestServiceEllipseFitter()
+	server = server.ellipse_api
+	server.openapi = custom_openapi
+
 	# host = 'localhost' if run local else 'ellipse'
 	uvicorn.run(server, port=8300, host='localhost', debug=True)
 	
