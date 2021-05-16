@@ -15,7 +15,6 @@ class RestServicePerimeterEstimator():
 	@staticmethod
 	@perimeter_estimator.post("/perimeter_estimator")
 	async def perimeter_estimating(ellipse_cordinates: str = Form(...), pixel_size: str = Form(...), filename: str = Form(...)):
-
 		ellipse_cordinates = ast.literal_eval(ellipse_cordinates)
 		pixel_size = float(pixel_size)
 
