@@ -24,9 +24,7 @@ class RestServiceGateway:
 			'file': file.file
 		}
 
-		headers = {}
-
-		insert_response = requests.request("POST", url[0], headers=headers, data=data, files=files)
+		insert_response = requests.request("POST", url[0], data=data, files=files)
 
 		#return json_insert
 		res = {

@@ -7,7 +7,7 @@ from fastapi.openapi.utils import get_openapi
 from PIL import Image
 import numpy as np
 from io import BytesIO
-
+import cv2
 # from splash_head import load_mrcnn_model, detect_and_color_splash
 from MaskRCNN import MaskRCNN
 
@@ -23,7 +23,6 @@ class RestServiceMRCNN():
 	@mrcnn_api.post("/mrcnn_masker")
 	async def mask_api(file: bytes = File(...)):
 		# Read image
-		import cv2
 		image = Image.open(BytesIO(file)).convert('RGB')
 		image = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
 

@@ -12,15 +12,7 @@ def send_request():
 
 	df = pd.read_csv("test_set_pixel_size.csv", delimiter=",")
 
-	# i = 0
-
 	for ind in df.index:
-		# print(df['filename'][ind], df['pixel size(mm)'][ind])
-		# i += 1
-		# if i == 3:
-		# 	break
-
-
 		filename = df["filename"][ind]
 		pixel_size = df["pixel size(mm)"][ind]
 		#
@@ -30,10 +22,7 @@ def send_request():
 		print("File name: ", file_name)
 
 		with open(file_name, 'rb') as image_file:
-			#img_1 = image_file.read()
 			img_1 = base64.b64encode(image_file.read())
-
-		headers = {}
 
 		data = {
 			"pixel_size": str(pixel_size),
@@ -44,8 +33,8 @@ def send_request():
 			'file': img_1
 		}
 
-		### insert
-		result = requests.post(url[0], headers=headers, data=data, files=files)
+		# insert
+		result = requests.post(url[0], data=data, files=files)
 		print("Result: ", result)
 
 

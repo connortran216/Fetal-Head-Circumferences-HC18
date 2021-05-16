@@ -1,7 +1,8 @@
 import numpy as np
-
 import cv2
+import matplotlib.pyplot as plt
 
+__all__ = ['opencv_fitEllipse', 'draw_ellipse']
 
 def opencv_fitEllipse(img, method="Direct"):
     #assert binary_mask.min() >= 0.0 and binary_mask.max() <= 1.0
@@ -32,12 +33,7 @@ def opencv_fitEllipse(img, method="Direct"):
     return ellipse
 
 
-
-import matplotlib.pyplot as plt
-
 def draw_ellipse(img, rgb_img):
-
-
     ellipse = opencv_fitEllipse(img)
 
     # (xx, yy), (MA, ma), angle = opencv_fitEllipse(img)
