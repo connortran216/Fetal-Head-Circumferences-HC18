@@ -18,27 +18,28 @@ def send_request():
 
 	# filename = "test_set/" + str(filename)
 	pixel_size = 0.117779842
-	filename = "019_2HC.png"
+	filename = "000_HC.png"
 	print("File name: ", filename)
 
 	with open(filename, 'rb') as image_file:
-		#img_1 = image_file.read()
-		img_1 = base64.b64encode(image_file.read())
+		# img_1 = image_file.read()
+		img_1 = base64.b64encode(image_file.read()).decode("utf-8")
 
 	headers = {}
 
 	data = {
 		"pixel_size": str(pixel_size),
-		"filename": filename
+		"filename": filename,
+		"file": img_1
 	}
 
 	files = {
 		'file': img_1
 	}
 
-	### insert
-	result = requests.post(url[0], headers=headers, data=data, files=files)
-	print("Result: ", result)
+	### insertjson
+	result = requests.post(url[0], headers=headers, json=data)
+	print("Result: ", result.content.decode())
 
 
 

@@ -26,7 +26,7 @@ class RestServiceMRCNN():
 		image = Image.open(BytesIO(file)).convert('RGB')
 		image = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
 
-		crop_mask, rgb_img = model.detect_and_color_splash(image=image)
+		crop_mask = model.detect_and_color_splash(image=image)
 
 		# Compress data
 		crop_mask = crop_mask.tolist()

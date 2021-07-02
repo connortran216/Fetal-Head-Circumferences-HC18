@@ -1,11 +1,14 @@
 import uvicorn
-from fastapi import FastAPI, Form, File
-from fastapi.openapi.utils import get_openapi
 import ast
 import base64
 import logging
 import requests
 import json
+
+from fastapi import FastAPI, Form, File
+from fastapi.openapi.utils import get_openapi
+from basemodel.schemas import CenterItem
+
 
 global url
 
@@ -28,7 +31,7 @@ class RestServiceCenterProcessing:
 
 	@staticmethod
 	@center_processing.post("/request_mask")
-	async def insert_core(file: bytes = File(...), pixel_size: str = Form(...), filename: str = Form(...)):
+	async def insert_core(item: CenterItem):
 
 		# file = base64.b64decode(file)
 
@@ -38,7 +41,7 @@ class RestServiceCenterProcessing:
 
 		headers = {}
 		files = {
-			'file': base64.b64decode(file)
+			'file': base64.b64decode(item.file)
 		}
 
 		masker_response = requests.request("POST", url[0], files=files)
@@ -50,37 +53,29 @@ class RestServiceCenterProcessing:
 
 		files = {
 			'masked_img': masker_response.content,
-			'rgb_img': base64.b64decode(file)
+			'rgb_img': base64.b64decode(item.file)
 		}
 
 		ellipse_response = requests.request("POST", url[1], files=files)
 		logging.info(f"Finishing Ellipse Fitting process !!!")
 
-		ellipse_cordinates = RestServiceCenterProcessing.response_decode(ellipse_response)
-		# ellipse_cordinates = ellipse_response.content.decode('utf-8')
-		#
-		# while isinstance(ellipse_cordinates, str):
-		# 	ellipse_cordinates = ast.literal_eval(ellipse_cordinates)
+		ellipse_coordinates = RestServiceCenterProcessing.response_decode(ellipse_response)
 
 		""" 
 			Perimeter Estimator 
 		"""
-		json_ellipse_cordinates = json.dumps(ellipse_cordinates['ellipse_cordinates'])
+		json_ellipse_coordinates = json.dumps(ellipse_coordinates['ellipse_coordinates'])
 
 		data = {
-			'ellipse_cordinates': json_ellipse_cordinates,
-			"pixel_size": pixel_size,
-			"filename": filename
+			'ellipse_coordinates': json_ellipse_coordinates,
+			"pixel_size": item.pixel_size,
+			"filename": item.filename,
+			"file": "abc"
 		}
 
-		ellipse_perimeter = requests.request("POST", url[2], headers=headers, data=data)
+		ellipse_perimeter = requests.request("POST", url[2], headers=headers, json=data)
 
 		ellipse_perimeter = RestServiceCenterProcessing.response_decode(ellipse_perimeter)
-		# ellipse_perimeter = ellipse_perimeter.content.decode('utf-8')
-		# while isinstance(ellipse_perimeter, str):
-		# 	ellipse_perimeter = ast.literal_eval(ellipse_perimeter)
-
-		# print(f"Fetal Head circumference: {ellipse_perimeter} mm")
 		logging.info(f"Fetal Head circumference: {ellipse_perimeter['ellipse_perimeter']} mm")
 
 		""" 

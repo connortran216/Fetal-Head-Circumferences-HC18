@@ -1,10 +1,13 @@
 import uvicorn
+import requests
+
 from fastapi import FastAPI, Form, UploadFile, File
 from fastapi.openapi.utils import get_openapi
-import requests
+from basemodel.schemas import CenterItem
 
 
 global url
+
 
 class RestServiceGateway:
 	api_gateway = FastAPI(title='API Gateway',
@@ -13,22 +16,19 @@ class RestServiceGateway:
 
 	@staticmethod
 	@api_gateway.post("/service_gateway_upload")
-	async def insert(pixel_size: str = Form(...), filename: str = Form(...), file: UploadFile = File(...)):
-
+	async def insert(item: CenterItem):
 		data = {
-			"pixel_size": pixel_size,
-			"filename": filename
+			"pixel_size": item.pixel_size,
+			"filename": item.filename,
+			"file": item.file
 		}
 
-		files = {
-			'file': file.file
-		}
-
-		insert_response = requests.request("POST", url[0], data=data, files=files)
+		insert_response = requests.request("POST", url[0], json=data)
 
 		#return json_insert
 		res = {
 			"Message": 'Upload successfully !!!',
+			"Content": insert_response.content.decode(),
 			"status": 200
 		}
 

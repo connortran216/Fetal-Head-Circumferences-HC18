@@ -1,14 +1,16 @@
 import json
 import ast
+import cv2
+import numpy as np
+import uvicorn
 import logging
+
 from fastapi import FastAPI, Form, File
 from fastapi.openapi.utils import get_openapi
-import uvicorn
 from splash_fit_ellipse import draw_ellipse
 from PIL import Image
 from io import BytesIO
-import cv2
-import numpy as np
+from basemodel.schemas import EllipseItem
 
 
 class RestServiceEllipseFitter():
@@ -34,13 +36,13 @@ class RestServiceEllipseFitter():
 		ellipse = draw_ellipse(masked_img, rgb_img)
 
 		result = {
-			"ellipse_cordinates": ellipse,
+			"ellipse_coordinates": ellipse,
 			"ellipse_img": rgb_img.tolist()
 		}
 		# # Compress data
-		json_ellipse_cordinates = json.dumps(result)
+		json_ellipse_coordinates = json.dumps(result)
 
-		return json_ellipse_cordinates
+		return json_ellipse_coordinates
 
 
 
