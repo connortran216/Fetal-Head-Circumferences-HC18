@@ -17,7 +17,8 @@ def send_request():
 	# pixel_size = sample_data["pixel size(mm)"].values[0]
 
 	# filename = "test_set/" + str(filename)
-	pixel_size = 0.117779842
+	pixel_size = 0.0691358041432
+
 	filename = "000_HC.png"
 	print("File name: ", filename)
 

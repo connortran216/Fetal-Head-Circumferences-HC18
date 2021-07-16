@@ -51,12 +51,12 @@ class RestServiceCenterProcessing:
 			Ellipse Fitter 
 		"""
 
-		files = {
-			'masked_img': masker_response.content,
-			'rgb_img': base64.b64decode(item.file)
+		data = {
+			'masked_img': base64.b64encode(masker_response.content).decode("utf-8"),
+			'rgb_img': item.file
 		}
 
-		ellipse_response = requests.request("POST", url[1], files=files)
+		ellipse_response = requests.request("POST", url[1], json=data)
 		logging.info(f"Finishing Ellipse Fitting process !!!")
 
 		ellipse_coordinates = RestServiceCenterProcessing.response_decode(ellipse_response)

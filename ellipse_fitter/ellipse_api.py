@@ -1,5 +1,6 @@
 import json
 import ast
+import base64
 import cv2
 import numpy as np
 import uvicorn
@@ -20,9 +21,11 @@ class RestServiceEllipseFitter():
 
 	@staticmethod
 	@ellipse_api.post("/ellipse_fitter")
-	async def ellipse_fitting(masked_img: bytes = File(...), rgb_img: bytes = File(...)):
+	async def ellipse_fitting(item: EllipseItem): #masked_img: bytes = File(...), rgb_img: bytes = File(...)
 		# Read image
-		masked_img = masked_img.decode("utf-8")
+		# masked_img = masked_img.decode("utf-8")
+		masked_img = base64.b64decode(item.masked_img).decode("utf-8")
+		rgb_img = base64.b64decode(item.rgb_img)
 
 		while isinstance(masked_img, str):
 			masked_img = ast.literal_eval(masked_img)
@@ -43,7 +46,6 @@ class RestServiceEllipseFitter():
 		json_ellipse_coordinates = json.dumps(result)
 
 		return json_ellipse_coordinates
-
 
 
 def custom_openapi():

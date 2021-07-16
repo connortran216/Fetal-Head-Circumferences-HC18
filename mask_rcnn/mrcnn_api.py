@@ -11,8 +11,8 @@ import cv2
 # from splash_head import load_mrcnn_model, detect_and_color_splash
 from MaskRCNN import MaskRCNN
 
-
 global model
+
 
 class RestServiceMRCNN():
 	mrcnn_api = FastAPI(title='MRCNN API',
@@ -28,6 +28,9 @@ class RestServiceMRCNN():
 
 		crop_mask = model.detect_and_color_splash(image=image)
 
+		filename = "crop_mask.jpg"
+		cv2.imwrite(filename, image)
+
 		# Compress data
 		crop_mask = crop_mask.tolist()
 		result = {
@@ -36,7 +39,6 @@ class RestServiceMRCNN():
 		json_masked_img = json.dumps(result)
 
 		return json_masked_img
-
 
 
 def custom_openapi():

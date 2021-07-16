@@ -7,6 +7,7 @@ import uvicorn
 from ellipse_perimeter import Perimeter
 from basemodel.schemas import PerimeterItem
 
+
 class RestServicePerimeterEstimator():
 	perimeter_estimator = FastAPI(title='Perimeter Estimator API',
 								  description='Fetal Head Circumferences Estimator.',
@@ -19,7 +20,7 @@ class RestServicePerimeterEstimator():
 		ellipse_coordinates = ast.literal_eval(item.ellipse_coordinates)
 		pixel_size = float(item.pixel_size)
 
-		ellipse_perimeter = Perimeter(ellipse_coordinates, pixel_size, item.filename)
+		ellipse_perimeter = Perimeter(ellipse_coordinates, pixel_size)
 
 		result = {
 			"ellipse_perimeter": ellipse_perimeter
